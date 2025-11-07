@@ -1,5 +1,7 @@
 import { CaseStudy } from "@/app/lib/types";
 import { CaseStudyCard } from "@/app/components/features/CaseStudyCard";
+import { Section } from "@/components/Section";
+import { PageHeader } from "@/components/PageHeader";
 
 const mockCaseStudies: CaseStudy[] = [
   {
@@ -49,36 +51,33 @@ const mockCaseStudies: CaseStudy[] = [
 export default function Home() {
   return (
     <div className="space-y-10">
-      <section className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground">
-          Verification-First <span className="text-brand-600">Portfolio</span>
-        </h1>
-        <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-          Rigorous development with testing, evaluation, and transparent docs.
-        </p>
-      </section>
-
-      <section>
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Case Studies</h2>
-          <a href="#" className="text-sm text-brand-600 hover:underline">
-            View all
-          </a>
+      <Section>
+        <div className="text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground">
+            Verification-First <span className="text-brand-600">Portfolio</span>
+          </h1>
+          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+            Rigorous development with testing, evaluation, and transparent docs.
+          </p>
         </div>
+      </Section>
+
+      <Section>
+        <PageHeader title="Case Studies" actions={<a href="#" className="text-sm text-brand-600 hover:underline">View all</a>} />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {mockCaseStudies.map(cs => (
+          {mockCaseStudies.map((cs) => (
             <CaseStudyCard key={cs.id} caseStudy={cs} />
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="prose max-w-none">
+      <Section className="prose max-w-none">
         <h2>Why verification-first?</h2>
         <p>
           This portfolio uses evaluation-driven development to ensure changes are measurable
           and decisions are documented through ADRs. The goal is clarity, confidence, and speed.
         </p>
-      </section>
+      </Section>
     </div>
   );
 }
