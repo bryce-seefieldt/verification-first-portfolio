@@ -1,15 +1,76 @@
+/**
+ * Evaluation Runner - Automated Testing Harness
+ *
+ * Runs evaluation test suites from JSONL datasets and generates results for the
+ * /evals/live dashboard. Currently uses deterministic keyword-based mock model
+ * for CI reproducibility, designed for future LLM-as-judge integration.
+ *
+ * **Workflow:**
+ * 1. Load test cases from evals/datasets/{name}.jsonl
+ * 2. Execute each test case through modelRespond()
+ * 3. Compare output against expected keywords (substring match)
+ * 4. Track latency, pass/fail status, and overall metrics
+ * 5. Write results to public/evals-results.json
+ * 6. Exit with code 1 if any tests fail (CI integration)
+ *
+ * **Usage:**
+ * ```bash
+ * pnpm tsx evals/run.ts                    # Run rag-basics (default)
+ * pnpm tsx evals/run.ts dataset-name       # Run specific dataset
+ * pnpm tsx evals/run.ts --verbose          # Show individual test details
+ * pnpm tsx evals/run.ts ds1 ds2 -v         # Run multiple datasets verbosely
+ * ```
+ *
+ * **Output Format** (public/evals-results.json):
+ * ```json
+ * [
+ *   {
+ *     "ts": 1699999999999,
+ *     "suite": "rag-basics",
+ *     "results": [{"id": "test-1", "pass": true, "output": "...", "latency": 5}],
+ *     "summary": {"total": 10, "passed": 10, "failed": 0, "passRate": 100}
+ *   }
+ * ]
+ * ```
+ *
+ * @see {@link /evals/schema.ts} for Zod type definitions
+ * @see {@link /src/app/(site)/evals/live/page.tsx} for results visualization
+ * @see {@link /.github/workflows/ci.yml} for CI integration
+ */
 import fs from 'node:fs'
 import path from 'node:path'
 import { EvalCase, type EvalResult, type EvalSuiteResults } from './schema'
 
-// Placeholder model function – replace with OpenAI/Azure/Anthropic later
+/**
+ * Mock Model Response Function
+ *
+ * Deterministic keyword-based mock that simulates LLM responses for testing.
+ * Returns canned responses based on prompt keywords to ensure 100% CI reproducibility.
+ *
+ * **Production Replacement Strategy:**
+ * ```typescript
+ * async function modelRespond(prompt: string): Promise<string> {
+ *   const response = await openai.chat.completions.create({
+ *     model: "gpt-4",
+ *     messages: [{role: "user", content: prompt}]
+ *   })
+ *   return response.choices[0].message.content || ""
+ * }
+ * ```
+ *
+ * **Design Rationale:**
+ * - Zero cost for CI runs (no API calls)
+ * - Instant feedback (no network latency)
+ * - Reproducible results (deterministic logic)
+ * - Useful for smoke testing eval harness itself
+ *
+ * @param prompt - User input text from JSONL test case
+ * @returns Canned response containing expected keywords
+ */
 async function modelRespond(prompt: string): Promise<string> {
-  // Mock for CI determinism
-  // In production, this would call a real LLM API
-  // For demo purposes, we return a response that includes keywords from the prompt
   const lowerPrompt = prompt.toLowerCase()
 
-  // Check more specific patterns first
+  // Ordered pattern matching: most specific patterns first to avoid false positives
   if (lowerPrompt.includes('on-chain')) {
     return 'On-chain verification provides immutable proof that artifacts existed at specific points in time, with cryptographic guarantees and tamper-evidence.'
   }
@@ -41,9 +102,19 @@ async function modelRespond(prompt: string): Promise<string> {
     return 'Verification-first development is an approach where success criteria and evaluation harnesses are defined before implementation.'
   }
 
-  // Fallback: return prompt slice
+  // Fallback: return prompt slice (shouldn't happen with proper test cases)
   return prompt.slice(0, 120)
 }
+/**
+ * Run Evaluation Suite
+ *
+ * Executes all test cases from a JSONL dataset and returns aggregated results.
+ *
+ * @param datasetName - Name of dataset file (without .jsonl extension)
+ * @param options.verbose - If true, log individual test case results
+ * @returns Suite results with summary statistics
+ * @throws Error if dataset file not found
+ */
 
 async function runEvalSuite(
   datasetName: string,
@@ -53,6 +124,7 @@ async function runEvalSuite(
 
   if (!fs.existsSync(file)) {
     throw new Error(`Dataset not found: ${file}`)
+    // JSONL format: one JSON object per line
   }
 
   const lines = fs.readFileSync(file, 'utf8').trim().split('\n')
@@ -62,11 +134,15 @@ async function runEvalSuite(
   console.warn(`📝 Total test cases: ${lines.length}\n`)
 
   for (const line of lines) {
+    // Zod validation ensures type safety and catches malformed test cases
     const test = EvalCase.parse(JSON.parse(line))
     const startTime = Date.now()
 
     const output = await modelRespond(test.input)
+    // Track latency even though mock is instant (useful for real model comparison)
     const latency = Date.now() - startTime
+    // Simple substring match: case-insensitive keyword detection
+    // Future: support regex patterns, semantic similarity, LLM-as-judge
 
     const pass = test.expected ? output.toLowerCase().includes(test.expected.toLowerCase()) : true
 

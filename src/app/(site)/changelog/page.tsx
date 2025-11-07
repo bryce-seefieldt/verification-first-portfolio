@@ -281,7 +281,7 @@ export default function ChangelogPage() {
                             key={commit.hash}
                             className="flex items-start gap-3 rounded-lg bg-zinc-50 p-2 dark:bg-zinc-900"
                           >
-                            <GitCommit className="mt-0.5 h-4 w-4 flex-shrink-0 text-zinc-600 dark:text-zinc-400" />
+                            <GitCommit className="mt-0.5 h-4 w-4 shrink-0 text-zinc-600 dark:text-zinc-400" />
                             <div className="min-w-0 flex-1">
                               <div className="text-sm font-medium">{commit.message}</div>
                               <div className="mt-1 flex items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400">

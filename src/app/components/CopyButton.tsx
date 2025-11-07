@@ -1,6 +1,32 @@
 'use client'
 import { useState } from 'react'
 import { Clipboard, Check } from 'lucide-react'
+/**
+ * CopyButton - Clipboard copy utility with visual feedback
+ *
+ * Provides one-click copying of text values (e.g., SHA-256 hashes, URLs) to the
+ * clipboard with visual confirmation. Used extensively on the /provenance page
+ * to enable verification workflows.
+ *
+ * @param value - The text content to copy to clipboard
+ * @param label - Button label text (default: "Copy")
+ * @param className - Additional Tailwind classes for styling
+ *
+ * @example
+ * ```tsx
+ * <CopyButton
+ *   value="92ed797d..."
+ *   label="Copy Hash"
+ *   className="ml-2"
+ * />
+ * ```
+ *
+ * @remarks
+ * - Uses Clipboard API (modern browsers only)
+ * - Shows green success state for 1.8s after copy
+ * - Icon transitions from Clipboard to Check on success
+ * - Graceful error handling with console.error
+ */
 
 interface CopyButtonProps {
   value: string

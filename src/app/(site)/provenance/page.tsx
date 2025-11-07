@@ -216,21 +216,21 @@ export default function ProvenancePage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Git Commits</div>
                     <div>Every commit hash is anchored with metadata</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Release Tags</div>
                     <div>Production releases are individually verified</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">
                       Build Artifacts
@@ -250,14 +250,14 @@ export default function ProvenancePage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Test Results</div>
                     <div>Pass/fail status with full test logs</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">
                       Coverage Reports
@@ -266,7 +266,7 @@ export default function ProvenancePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">
                       Performance Benchmarks

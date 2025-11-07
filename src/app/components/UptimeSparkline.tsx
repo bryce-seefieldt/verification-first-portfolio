@@ -1,5 +1,31 @@
 'use client'
 import { useEffect, useState } from 'react'
+/**
+ * UptimeSparkline - Visual uptime monitoring dashboard
+ *
+ * Fetches and displays uptime data from /uptime.json (populated by hourly GitHub
+ * Actions cron). Renders an SVG sparkline with color-coded bars (green=ok, red=error)
+ * and calculates uptime percentage over recent checks.
+ *
+ * @param limit - Maximum number of recent checks to display (default: 168 = 7 days hourly)
+ * @param height - SVG height in pixels (default: 40)
+ *
+ * @example
+ * ```tsx
+ * <UptimeSparkline limit={168} height={40} />
+ * ```
+ *
+ * @remarks
+ * - Client component for data fetching and SVG rendering
+ * - Fetches /uptime.json on mount (no polling for static sites)
+ * - Bar width: 3px, gap: 1px between bars
+ * - Tooltips show timestamp, status, and response time on hover
+ * - Gracefully handles missing data (no uptime.json yet)
+ * - Used on /about page in Infrastructure Resilience section
+ *
+ * @see {@link /scripts/check-uptime.ts} for data generation
+ * @see {@link /.github/workflows/uptime.yml} for automation
+ */
 
 interface UptimeRecord {
   timestamp: string
