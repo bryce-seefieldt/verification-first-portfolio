@@ -38,4 +38,65 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# Keep Next.js ambient types file tracked for editor stability
+# (Next.js regenerates it if missing; do not edit its contents)
+# next-env.d.ts NOT ignored intentionally
+
+# IDE/editor artifacts
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+.fleet/
+
+# OS / file system cruft
+Thumbs.db
+*.swp
+*.swo
+.DS_Store
+
+# Logs (generic catch-all)
+*.log
+logs/
+
+# Coverage & instrumentation
+.nyc_output/
+coverage-final.json
+
+# Node / build caches
+.turbo
+.eslintcache
+.swc/
+
+# Environment & secrets (keep examples via *.example)
+.env.local
+.env.development
+.env.test
+.env.production
+.envrc
+.npmrc
+!.env.example
+
+# Databases / local storage
+*.sqlite*
+*.db
+*.db-journal
+
+# Misc binaries & archives
+*.tgz
+*.tar
+*.gz
+*.zip
+*.bak
+*.orig
+
+# Yarn berry cache (already covered, redundancy acceptable)
+.yarn/cache
+
+# Serverless / deployment artifacts (future-proof)
+.serverless/
+.dist/
+dist/
+
+# Ignore generated type augmentations from tools (keep explicit ones in src/ if needed)
+types/*/*.generated.d.ts
