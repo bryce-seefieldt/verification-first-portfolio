@@ -1,0 +1,40 @@
+---
+title: "Incident Copilot: Real-Time Guidance"
+date: "2025-11-07"
+summary: "Building a Copilot-style assistant for live incident response sessions with verification-first evaluation."
+tags: ["copilot", "incidents", "guidance", "llm"]
+status: "in-progress"
+repo: "bryce-seefieldt/incident-copilot"
+metrics:
+  response_latency_ms: 420
+  coverage_percent: 68
+  suggestion_accuracy_percent: 74
+---
+
+# Incident Copilot
+
+Designing a real-time operations assistant that surfaces actionable guidance during an outage call.
+
+## Goals
+
+- Reduce time-to-mitigation.
+- Improve responder confidence.
+- Capture structured evaluation of suggestions.
+
+## Approach
+
+The system captures transcript chunks, performs lightweight retrieval over known runbooks, and ranks actions via scoring functions.
+
+> Future iterations will integrate deeper reliability metrics and post-incident automated summarization.
+
+## Current Metrics
+
+- Latency: ~420ms median for suggestion generation.
+- Coverage: 68% of incident steps receive contextual guidance.
+- Accuracy: 74% of suggestions accepted or partially followed.
+
+## Next Steps
+
+1. Add hallucination guardrails.
+2. Expand benchmark dataset for unusual incident types.
+3. Integrate with evaluation harness for automated regression reports.

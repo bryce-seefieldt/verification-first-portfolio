@@ -1,0 +1,39 @@
+---
+title: "Eval-First RAG: From Criteria to Code"
+date: "2025-11-07"
+summary: "A RAG pipeline developed evaluation-first with measurable criteria and ADRs."
+tags: ["rag", "evaluation", "retrieval", "llm"]
+status: "completed"
+repo: "bryce-seefieldt/eval-first-rag"
+metrics:
+  retrieval_precision_at_5: 0.81
+  latency_ms: 230
+  cost_per_query_usd: 0.0042
+---
+
+# Eval-First RAG
+
+This case study demonstrates a pipeline where evaluation criteria were defined prior to implementation.
+
+## Evaluation Criteria
+
+1. Retrieval precision @k=5 ≥ 0.8
+2. Response latency ≤ 250ms (p95)
+3. Cost per query ≤ $0.005
+
+## Architecture
+
+- Lightweight index with semantic + keyword hybrid.
+- Reranking for top-8 hits.
+- Answer composition with deterministic templates.
+
+## Results
+
+- Achieved precision@5 of 0.81.
+- Latency p95 at 245ms.
+- Cost target met at $0.0042.
+
+## Lessons
+
+- Early metric alignment reduces iteration cycles.
+- Clear ADRs simplify tradeoff discussions.

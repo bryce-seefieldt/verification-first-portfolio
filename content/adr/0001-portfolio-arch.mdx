@@ -1,0 +1,25 @@
+---
+title: "ADR-0001: Portfolio Architecture"
+date: "2025-11-07"
+summary: "Choose Next.js App Router, Tailwind v4, and verification-first workflow."
+tags: ["adr", "architecture", "nextjs"]
+status: "accepted"
+repo: "bryce-seefieldt/verification-first-portfolio"
+metrics:
+  build_time_s: 3.3
+---
+
+# ADR-0001: Portfolio Architecture
+
+We adopt Next.js (App Router) with Tailwind v4, Shadcn UI, and a verification-first workflow emphasizing evaluation harnesses.
+
+## Rationale
+
+- Modern React features and RSC.
+- Tailwind v4 tokens/utilities.
+- Clear documentation patterns with MDX.
+
+## Consequences
+
+- Simpler content routing via file system.
+- CI includes health verification.
