@@ -3,11 +3,14 @@ import { NextResponse } from 'next/server'
 export const runtime = 'edge'
 
 // Edge runtime lacks process APIs; provide synthetic uptime since first invocation.
-// Use a stable global to approximate uptime within the same edge isolate
-let start = (globalThis as any).__edgeStartTime as number | undefined
+// Augment globalThis with an optional __edgeStartTime property for uptime tracking
+// Declare a minimal shape for our global augmentation without polluting ambient types
+type EdgeGlobal = typeof globalThis & { __edgeStartTime?: number }
+const g = globalThis as EdgeGlobal
+let start = g.__edgeStartTime
 if (!start) {
   start = performance.now()
-  ;(globalThis as any).__edgeStartTime = start
+  g.__edgeStartTime = start
 }
 
 export async function GET() {
