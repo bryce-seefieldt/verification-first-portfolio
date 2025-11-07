@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { siteConfig } from '@/site.config'
-import { GitFork, Clock, FileText, CheckCircle2, ExternalLink } from 'lucide-react'
+import { GitFork, Clock, FileText, CheckCircle2, ExternalLink, Download } from 'lucide-react'
 
 export const metadata = {
   title: 'Work Trials',
@@ -164,6 +164,54 @@ export default function WorkTrialsPage() {
           </CardContent>
         </Card>
 
+        {/* Proposal Template */}
+        <Card className="mb-12 border-zinc-200 dark:border-zinc-800">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Work Trial Proposal Template
+            </CardTitle>
+            <CardDescription>
+              Download a structured one-pager template for work trial proposals
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              This template includes sections for scope definition, acceptance tests, data
+              requirements, SLA commitments, fee structure, and NDA terms. Use it to create clear,
+              actionable proposals for custom work trials.
+            </p>
+            <div className="flex items-center gap-3">
+              <Button asChild>
+                <Link
+                  href={`${siteConfig.repo.url}/blob/main/content/work-trials/_proposal-template.mdx`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  View Template
+                  <ExternalLink className="ml-2 h-3 w-3" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link
+                  href={`${siteConfig.repo.url}/raw/main/content/work-trials/_proposal-template.mdx`}
+                  download
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  Download MDX
+                </Link>
+              </Button>
+            </div>
+            <div className="rounded-md border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-900">
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                <strong>Includes:</strong> Scope, Acceptance Tests, Data Needs, SLA, Fee Structure,
+                NDA Terms, Timeline
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Work Trials Grid */}
         <div className="space-y-6">
           {workTrials.map((trial) => (
@@ -223,7 +271,7 @@ export default function WorkTrialsPage() {
                           key={item}
                           className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400"
                         >
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-600 dark:text-green-400" />
                           {item}
                         </li>
                       ))}
