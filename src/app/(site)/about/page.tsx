@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/site.config'
+import { UptimeSparkline } from '@/app/components/UptimeSparkline'
 import Link from 'next/link'
 import {
   User,
@@ -155,6 +156,12 @@ export default function AboutPage() {
                     <span>Infrastructure-as-code for rapid recovery</span>
                   </li>
                 </ul>
+                <div className="mt-6 border-t border-zinc-200 pt-4 dark:border-zinc-700">
+                  <h5 className="mb-3 text-xs font-semibold tracking-wide text-zinc-500 uppercase">
+                    Live Uptime
+                  </h5>
+                  <UptimeSparkline limit={168} height={40} />
+                </div>
               </CardContent>
             </Card>
 
