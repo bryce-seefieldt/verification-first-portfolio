@@ -1,6 +1,6 @@
 import { CaseStudy } from '@/app/lib/types'
-import { Card } from '@/app/components/ui/Card'
-import { Button } from '@/app/components/ui/Button'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy
@@ -13,11 +13,15 @@ export function CaseStudyCard({ caseStudy, onViewDetails }: CaseStudyCardProps) 
   const successRate = totalCriteria > 0 ? (passedCriteria / totalCriteria) * 100 : 0
   
   return (
-    <Card
-      title={caseStudy.title}
-      description={caseStudy.description}
-    >
-      <div className="space-y-4">
+    <Card>
+      <CardHeader>
+        <CardTitle>{caseStudy.title}</CardTitle>
+        {caseStudy.description && (
+          <CardDescription>{caseStudy.description}</CardDescription>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
         <div>
           <h4 className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
             Technologies
@@ -52,15 +56,16 @@ export function CaseStudyCard({ caseStudy, onViewDetails }: CaseStudyCardProps) 
         </div>
         
         {onViewDetails && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onViewDetails(caseStudy.id)}
-          >
-            View Details
-          </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => onViewDetails(caseStudy.id)}
+            >
+              View Details
+            </Button>
         )}
-      </div>
+        </div>
+      </CardContent>
     </Card>
   )
 }
