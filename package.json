@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "health": "node scripts/health-check.js",
+    "export": "next build && next export",
+    "postexport": "node scripts/postexport/process.js",
+    "hash": "node scripts/hashing/index.js hash ./out",
+    "hash:changes": "node scripts/hashing/index.js changes ./out ./content-hashes.json",
+    "build:full": "next build && npm run postexport && npm run hash"
   },
   "dependencies": {
     "react": "19.2.0",
