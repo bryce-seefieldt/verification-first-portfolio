@@ -4,7 +4,6 @@ import { getCaseStudyBySlug, getCaseStudySlugs, mdxComponents } from '@/lib/mdx'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { Suspense } from 'react'
 
 // Placeholder Verify Badge
 function VerifyBadge() {
@@ -16,7 +15,7 @@ function VerifyBadge() {
 }
 
 export async function generateStaticParams() {
-  return getCaseStudySlugs().map(slug => ({ slug }))
+  return getCaseStudySlugs().map((slug) => ({ slug }))
 }
 
 interface CaseStudyPageProps {
@@ -34,24 +33,24 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
       <article className="prose max-w-none">
         <header className="mb-8 space-y-3">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">
-            {frontmatter.title}
-          </h1>
+          <h1 className="text-foreground text-4xl font-bold tracking-tight">{frontmatter.title}</h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-            <time dateTime={frontmatter.date}>{new Date(frontmatter.date).toLocaleDateString()}</time>
+            <time dateTime={frontmatter.date}>
+              {new Date(frontmatter.date).toLocaleDateString()}
+            </time>
             <span>• {readingTime.text}</span>
-            {frontmatter.status && (
-              <Badge variant="secondary">{frontmatter.status}</Badge>
-            )}
+            {frontmatter.status && <Badge variant="secondary">{frontmatter.status}</Badge>}
             <VerifyBadge />
           </div>
           {frontmatter.summary && (
-            <p className="text-lg text-zinc-600 dark:text-zinc-300 mt-2">{frontmatter.summary}</p>
+            <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300">{frontmatter.summary}</p>
           )}
           {frontmatter.tags && (
             <div className="flex flex-wrap gap-2 pt-2">
-              {frontmatter.tags.map(tag => (
-                <Badge key={tag} variant="outline">{tag}</Badge>
+              {frontmatter.tags.map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
               ))}
             </div>
           )}
@@ -61,24 +60,33 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
       <aside className="space-y-6">
         <Card>
-          <CardContent className="pt-6 space-y-4">
+          <CardContent className="space-y-4 pt-6">
             <div>
-              <h3 className="font-semibold mb-2 text-sm uppercase tracking-wide text-zinc-500">Repository</h3>
+              <h3 className="mb-2 text-sm font-semibold tracking-wide text-zinc-500 uppercase">
+                Repository
+              </h3>
               {frontmatter.repo ? (
-                <a className="text-sm text-brand-600 underline break-all" href={`https://github.com/${frontmatter.repo}`}>{frontmatter.repo}</a>
+                <a
+                  className="text-brand-600 text-sm break-all underline"
+                  href={`https://github.com/${frontmatter.repo}`}
+                >
+                  {frontmatter.repo}
+                </a>
               ) : (
                 <p className="text-sm text-zinc-500">—</p>
               )}
             </div>
             <Separator />
             <div>
-              <h3 className="font-semibold mb-2 text-sm uppercase tracking-wide text-zinc-500">Metrics</h3>
+              <h3 className="mb-2 text-sm font-semibold tracking-wide text-zinc-500 uppercase">
+                Metrics
+              </h3>
               <div className="grid grid-cols-1 gap-2 text-sm">
                 {frontmatter.metrics ? (
                   Object.entries(frontmatter.metrics).map(([k, v]) => (
                     <div key={k} className="flex items-center justify-between gap-4">
                       <span className="text-zinc-500">{k}</span>
-                      <span className="font-medium text-foreground">{v as any}</span>
+                      <span className="text-foreground font-medium">{v as any}</span>
                     </div>
                   ))
                 ) : (

@@ -117,7 +117,7 @@ export default function EvalsPage() {
 
       <Section>
         {/* Aggregate Stats */}
-        <div className="grid gap-4 md:grid-cols-4 mb-12">
+        <div className="mb-12 grid gap-4 md:grid-cols-4">
           <Card>
             <CardContent className="p-6">
               <div className="text-2xl font-bold">{evaluationSuites.length}</div>
@@ -161,7 +161,7 @@ export default function EvalsPage() {
                       <div className="flex items-center gap-3">
                         <CardTitle className="text-xl">{suite.name}</CardTitle>
                         <Badge className={statusInfo.className}>
-                          <StatusIcon className="h-3 w-3 mr-1" />
+                          <StatusIcon className="mr-1 h-3 w-3" />
                           {statusInfo.label}
                         </Badge>
                       </div>
@@ -171,7 +171,7 @@ export default function EvalsPage() {
                       </CardDescription>
                     </div>
                     <Button variant="outline" size="sm">
-                      <Download className="h-4 w-4 mr-2" />
+                      <Download className="mr-2 h-4 w-4" />
                       Export JSON
                     </Button>
                   </div>
@@ -213,17 +213,17 @@ export default function EvalsPage() {
                       <span className="text-zinc-600 dark:text-zinc-400">Pass Rate</span>
                       <span className="font-semibold">{passRate}%</span>
                     </div>
-                    <div className="h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden">
+                    <div className="h-2 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700">
                       <div
-                        className="h-full bg-green-600 dark:bg-green-400 transition-all duration-500"
+                        className="h-full bg-green-600 transition-all duration-500 dark:bg-green-400"
                         style={{ width: `${passRate}%` }}
                       />
                     </div>
                   </div>
 
                   {/* Key Metrics */}
-                  <div className="border-t border-zinc-200 dark:border-zinc-800 pt-4">
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                  <div className="border-t border-zinc-200 pt-4 dark:border-zinc-800">
+                    <h4 className="mb-3 flex items-center gap-2 font-semibold">
                       <TrendingUp className="h-4 w-4" />
                       Key Metrics
                     </h4>
@@ -231,7 +231,7 @@ export default function EvalsPage() {
                       {suite.metrics.map((metric) => (
                         <div
                           key={metric.name}
-                          className="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-900 rounded-lg"
+                          className="flex items-center justify-between rounded-lg bg-zinc-50 p-3 dark:bg-zinc-900"
                         >
                           <div>
                             <div className="text-sm font-medium">{metric.name}</div>
@@ -253,7 +253,7 @@ export default function EvalsPage() {
         </div>
 
         {/* Info Card */}
-        <Card className="mt-12 border-2 border-brand-200 dark:border-brand-800">
+        <Card className="border-brand-200 dark:border-brand-800 mt-12 border-2">
           <CardHeader>
             <CardTitle>About These Evaluations</CardTitle>
           </CardHeader>
@@ -262,7 +262,7 @@ export default function EvalsPage() {
               All evaluation results are automatically generated from test runs and exported as JSON
               files. Each test suite includes:
             </p>
-            <ul className="list-disc list-inside space-y-1 ml-4">
+            <ul className="ml-4 list-inside list-disc space-y-1">
               <li>Comprehensive test coverage with pass/fail metrics</li>
               <li>Performance benchmarks against defined targets</li>
               <li>Detailed logs and error traces for failed tests</li>

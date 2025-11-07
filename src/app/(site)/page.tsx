@@ -47,9 +47,9 @@ export default function Home() {
               </Badge>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 Verification-First
-                <span className="block text-brand-600 dark:text-brand-400">Development</span>
+                <span className="text-brand-600 dark:text-brand-400 block">Development</span>
               </h1>
-              <p className="text-lg text-zinc-600 dark:text-zinc-300 max-w-xl">
+              <p className="max-w-xl text-lg text-zinc-600 dark:text-zinc-300">
                 {siteConfig.description}
               </p>
             </div>
@@ -76,10 +76,10 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center justify-center lg:justify-end">
-            <Card className="w-full max-w-md border-2 border-brand-200 dark:border-brand-800">
+            <Card className="border-brand-200 dark:border-brand-800 w-full max-w-md border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="h-5 w-5 text-brand-600 dark:text-brand-400" />
+                  <BarChart3 className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                   Live Evaluation Status
                 </CardTitle>
                 <CardDescription>Real-time verification metrics</CardDescription>
@@ -97,7 +97,7 @@ export default function Home() {
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">Build Status</span>
                   <Badge className="bg-green-600">Passing</Badge>
                 </div>
-                <Button asChild variant="link" className="w-full mt-2 p-0">
+                <Button asChild variant="link" className="mt-2 w-full p-0">
                   <Link href="/evals">View All Evaluations →</Link>
                 </Button>
               </CardContent>
@@ -108,17 +108,18 @@ export default function Home() {
 
       {/* Features Grid */}
       <Section>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-3">Why Verification-First?</h2>
-          <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-            Traditional development writes code first, then tests. Verification-first defines success criteria before implementation.
+        <div className="mb-12 text-center">
+          <h2 className="mb-3 text-3xl font-bold">Why Verification-First?</h2>
+          <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-300">
+            Traditional development writes code first, then tests. Verification-first defines
+            success criteria before implementation.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {siteConfig.features.map((feature) => (
             <Card key={feature.title} className="border-zinc-200 dark:border-zinc-800">
               <CardHeader>
-                <div className="text-4xl mb-3">{feature.icon}</div>
+                <div className="mb-3 text-4xl">{feature.icon}</div>
                 <CardTitle className="text-lg">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
@@ -131,9 +132,9 @@ export default function Home() {
 
       {/* Featured Case Studies */}
       <Section>
-        <div className="flex items-end justify-between mb-8">
+        <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="text-3xl font-bold mb-2">Featured Work</h2>
+            <h2 className="mb-2 text-3xl font-bold">Featured Work</h2>
             <p className="text-zinc-600 dark:text-zinc-300">
               Real-world applications of verification-first development
             </p>
@@ -154,46 +155,49 @@ export default function Home() {
 
       {/* Verify Explainer */}
       <Section>
-        <Card className="border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
-          <CardHeader className="text-center pb-8">
-            <CardTitle className="text-3xl font-bold mb-3">How Verification Works</CardTitle>
-            <CardDescription className="text-base max-w-2xl mx-auto">
-              Every artifact in this portfolio is cryptographically signed and can be independently verified
+        <Card className="border-brand-200 dark:border-brand-800 from-brand-50 dark:from-brand-950 border-2 bg-linear-to-br to-white dark:to-zinc-900">
+          <CardHeader className="pb-8 text-center">
+            <CardTitle className="mb-3 text-3xl font-bold">How Verification Works</CardTitle>
+            <CardDescription className="mx-auto max-w-2xl text-base">
+              Every artifact in this portfolio is cryptographically signed and can be independently
+              verified
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-6 md:grid-cols-3 mb-8">
+            <div className="mb-8 grid gap-6 md:grid-cols-3">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                  <div className="bg-brand-600 flex h-10 w-10 items-center justify-center rounded-full font-bold text-white">
                     1
                   </div>
                   <h3 className="font-semibold">Define Criteria</h3>
                 </div>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
+                <p className="pl-13 text-sm text-zinc-600 dark:text-zinc-400">
                   Success metrics and evaluation harnesses are created before any implementation
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                  <div className="bg-brand-600 flex h-10 w-10 items-center justify-center rounded-full font-bold text-white">
                     2
                   </div>
                   <h3 className="font-semibold">Build & Test</h3>
                 </div>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
-                  Implementation is validated continuously against defined criteria with automated evals
+                <p className="pl-13 text-sm text-zinc-600 dark:text-zinc-400">
+                  Implementation is validated continuously against defined criteria with automated
+                  evals
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                  <div className="bg-brand-600 flex h-10 w-10 items-center justify-center rounded-full font-bold text-white">
                     3
                   </div>
                   <h3 className="font-semibold">Prove & Deploy</h3>
                 </div>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
-                  Results are cryptographically signed and anchored on-chain for immutable provenance
+                <p className="pl-13 text-sm text-zinc-600 dark:text-zinc-400">
+                  Results are cryptographically signed and anchored on-chain for immutable
+                  provenance
                 </p>
               </div>
             </div>
@@ -217,10 +221,11 @@ export default function Home() {
 
       {/* CTA Section */}
       <Section className="text-center">
-        <div className="max-w-2xl mx-auto space-y-6">
+        <div className="mx-auto max-w-2xl space-y-6">
           <h2 className="text-3xl font-bold">Ready to Work Together?</h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-300">
-            Explore work trial templates, review my evaluation results, or learn about my disaster recovery practices
+            Explore work trial templates, review my evaluation results, or learn about my disaster
+            recovery practices
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">

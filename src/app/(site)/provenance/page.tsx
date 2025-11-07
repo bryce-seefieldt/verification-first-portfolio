@@ -9,7 +9,8 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Provenance',
-  description: 'How cryptographic verification and on-chain anchoring ensure immutable proof of work',
+  description:
+    'How cryptographic verification and on-chain anchoring ensure immutable proof of work',
 }
 
 export default function ProvenancePage() {
@@ -22,7 +23,7 @@ export default function ProvenancePage() {
 
       <Section>
         {/* Network Info */}
-        <Card className="mb-12 border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
+        <Card className="border-brand-200 dark:border-brand-800 from-brand-50 dark:from-brand-950 mb-12 border-2 bg-linear-to-br to-white dark:to-zinc-900">
           <CardHeader>
             <div className="flex items-center justify-between">
               <div>
@@ -41,17 +42,17 @@ export default function ProvenancePage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-3 text-sm">
+            <div className="grid gap-4 text-sm md:grid-cols-3">
               <div>
-                <div className="text-zinc-600 dark:text-zinc-400 mb-1">Network</div>
+                <div className="mb-1 text-zinc-600 dark:text-zinc-400">Network</div>
                 <div className="font-mono">Ethereum Sepolia</div>
               </div>
               <div>
-                <div className="text-zinc-600 dark:text-zinc-400 mb-1">Avg Gas Cost</div>
+                <div className="mb-1 text-zinc-600 dark:text-zinc-400">Avg Gas Cost</div>
                 <div className="font-mono">~$0.12 / anchor</div>
               </div>
               <div>
-                <div className="text-zinc-600 dark:text-zinc-400 mb-1">Verification Time</div>
+                <div className="mb-1 text-zinc-600 dark:text-zinc-400">Verification Time</div>
                 <div className="font-mono">~3-5 seconds</div>
               </div>
             </div>
@@ -60,27 +61,27 @@ export default function ProvenancePage() {
 
         {/* How It Works */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">How Verification Works</h2>
+          <h2 className="mb-6 text-2xl font-bold">How Verification Works</h2>
           <div className="grid gap-6 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <Hash className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <Hash className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">1. Hash Generation</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  Every build artifact (code, evals, documentation) is hashed using SHA-256. The hash
-                  serves as a cryptographic fingerprint of the content.
+                  Every build artifact (code, evals, documentation) is hashed using SHA-256. The
+                  hash serves as a cryptographic fingerprint of the content.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <Lock className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <Lock className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">2. On-Chain Anchoring</CardTitle>
               </CardHeader>
@@ -94,8 +95,8 @@ export default function ProvenancePage() {
 
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <CheckCircle2 className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <CheckCircle2 className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">3. Independent Verification</CardTitle>
               </CardHeader>
@@ -111,7 +112,7 @@ export default function ProvenancePage() {
 
         {/* What Gets Anchored */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">What Gets Anchored</h2>
+          <h2 className="mb-6 text-2xl font-bold">What Gets Anchored</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
@@ -122,23 +123,25 @@ export default function ProvenancePage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Git Commits</div>
                     <div>Every commit hash is anchored with metadata</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Release Tags</div>
                     <div>Production releases are individually verified</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
-                    <div className="font-medium text-zinc-900 dark:text-zinc-100">Build Artifacts</div>
+                    <div className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Build Artifacts
+                    </div>
                     <div>Compiled output and dependencies tracked</div>
                   </div>
                 </div>
@@ -154,23 +157,27 @@ export default function ProvenancePage() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
                     <div className="font-medium text-zinc-900 dark:text-zinc-100">Test Results</div>
                     <div>Pass/fail status with full test logs</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
-                    <div className="font-medium text-zinc-900 dark:text-zinc-100">Coverage Reports</div>
+                    <div className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Coverage Reports
+                    </div>
                     <div>Line and branch coverage metrics</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" />
                   <div>
-                    <div className="font-medium text-zinc-900 dark:text-zinc-100">Performance Benchmarks</div>
+                    <div className="font-medium text-zinc-900 dark:text-zinc-100">
+                      Performance Benchmarks
+                    </div>
                     <div>Latency, throughput, and resource usage</div>
                   </div>
                 </div>
@@ -187,39 +194,47 @@ export default function ProvenancePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold mb-2">Hashing Algorithm</h4>
-              <div className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded-lg font-mono text-sm">
+              <h4 className="mb-2 font-semibold">Hashing Algorithm</h4>
+              <div className="rounded-lg bg-zinc-100 p-3 font-mono text-sm dark:bg-zinc-900">
                 SHA-256 (Secure Hash Algorithm 256-bit)
               </div>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 Produces a unique 256-bit (32-byte) hash for any input. Collision-resistant and
                 cryptographically secure.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-2">Smart Contract</h4>
-              <div className="bg-zinc-100 dark:bg-zinc-900 p-3 rounded-lg font-mono text-sm overflow-x-auto">
-                <div className="text-purple-600 dark:text-purple-400">contract</div> ProvenanceAnchor
+              <h4 className="mb-2 font-semibold">Smart Contract</h4>
+              <div className="overflow-x-auto rounded-lg bg-zinc-100 p-3 font-mono text-sm dark:bg-zinc-900">
+                <div className="text-purple-600 dark:text-purple-400">contract</div>{' '}
+                ProvenanceAnchor
                 {'{'}
                 <br />
-                &nbsp;&nbsp;<div className="inline text-blue-600 dark:text-blue-400">function</div>{' '}
-                anchor(bytes32 hash, string metadata) <div className="inline text-blue-600 dark:text-blue-400">public</div>
+                &nbsp;&nbsp;<div className="inline text-blue-600 dark:text-blue-400">
+                  function
+                </div>{' '}
+                anchor(bytes32 hash, string metadata){' '}
+                <div className="inline text-blue-600 dark:text-blue-400">public</div>
                 <br />
-                &nbsp;&nbsp;<div className="inline text-blue-600 dark:text-blue-400">function</div>{' '}
-                verify(bytes32 hash) <div className="inline text-blue-600 dark:text-blue-400">public</div>{' '}
+                &nbsp;&nbsp;<div className="inline text-blue-600 dark:text-blue-400">
+                  function
+                </div>{' '}
+                verify(bytes32 hash){' '}
+                <div className="inline text-blue-600 dark:text-blue-400">public</div>{' '}
                 <div className="inline text-purple-600 dark:text-purple-400">view</div>{' '}
-                <div className="inline text-blue-600 dark:text-blue-400">returns</div> (AnchorRecord)
+                <div className="inline text-blue-600 dark:text-blue-400">returns</div>{' '}
+                (AnchorRecord)
                 <br />
                 {'}'}
               </div>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                 Minimal gas-optimized contract for storing hashes with timestamps and metadata.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-2">Verification Process</h4>
+              <h4 className="mb-2 font-semibold">Verification Process</h4>
               <ol className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
                 <li className="flex items-start gap-2">
                   <Badge variant="outline" className="mt-0.5">
@@ -233,7 +248,7 @@ export default function ProvenancePage() {
                   </Badge>
                   <div>
                     Compute SHA-256 hash:{' '}
-                    <code className="bg-zinc-100 dark:bg-zinc-900 px-1 rounded">
+                    <code className="rounded bg-zinc-100 px-1 dark:bg-zinc-900">
                       sha256sum artifact.json
                     </code>
                   </div>
@@ -256,12 +271,12 @@ export default function ProvenancePage() {
         </Card>
 
         {/* CTA */}
-        <Card className="border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
-          <CardContent className="p-8 text-center space-y-4">
+        <Card className="border-brand-200 dark:border-brand-800 from-brand-50 dark:from-brand-950 border-2 bg-linear-to-br to-white dark:to-zinc-900">
+          <CardContent className="space-y-4 p-8 text-center">
             <h3 className="text-2xl font-bold">Try It Yourself</h3>
-            <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-              All source code, evaluation results, and verification scripts are open source. Clone the
-              repo and verify the artifacts independently.
+            <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-300">
+              All source code, evaluation results, and verification scripts are open source. Clone
+              the repo and verify the artifacts independently.
             </p>
             <div className="flex justify-center gap-4">
               <Button asChild size="lg">

@@ -1,6 +1,6 @@
 import { PageHeader } from '@/components/PageHeader'
 import { Section } from '@/components/Section'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/site.config'
@@ -27,19 +27,16 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        title={siteConfig.author.name}
-        description={siteConfig.author.title}
-      />
+      <PageHeader title={siteConfig.author.name} description={siteConfig.author.title} />
 
       <Section>
         {/* Profile Card */}
         <Card className="mb-12">
           <CardContent className="p-8">
             <div className="grid gap-8 md:grid-cols-3">
-              <div className="md:col-span-2 space-y-6">
+              <div className="space-y-6 md:col-span-2">
                 <div>
-                  <h2 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                  <h2 className="mb-3 flex items-center gap-2 text-2xl font-bold">
                     <User className="h-6 w-6" />
                     About Me
                   </h2>
@@ -59,11 +56,11 @@ export default function AboutPage() {
               {/* Contact & Links */}
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold mb-3">Connect</h3>
+                  <h3 className="mb-3 font-semibold">Connect</h3>
                   <div className="space-y-2">
                     <Button asChild variant="outline" className="w-full justify-start">
                       <Link href={`mailto:${siteConfig.social.email}`}>
-                        <Mail className="h-4 w-4 mr-2" />
+                        <Mail className="mr-2 h-4 w-4" />
                         Email
                       </Link>
                     </Button>
@@ -73,7 +70,7 @@ export default function AboutPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="h-4 w-4 mr-2" />
+                        <Github className="mr-2 h-4 w-4" />
                         GitHub
                         <ExternalLink className="ml-auto h-3 w-3" />
                       </Link>
@@ -84,7 +81,7 @@ export default function AboutPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Linkedin className="h-4 w-4 mr-2" />
+                        <Linkedin className="mr-2 h-4 w-4" />
                         LinkedIn
                         <ExternalLink className="ml-auto h-3 w-3" />
                       </Link>
@@ -95,7 +92,7 @@ export default function AboutPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Twitter className="h-4 w-4 mr-2" />
+                        <Twitter className="mr-2 h-4 w-4" />
                         Twitter
                         <ExternalLink className="ml-auto h-3 w-3" />
                       </Link>
@@ -109,12 +106,12 @@ export default function AboutPage() {
 
         {/* DR/BCP Credibility */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Disaster Recovery & Business Continuity</h2>
+          <h2 className="mb-6 text-2xl font-bold">Disaster Recovery & Business Continuity</h2>
           <div className="grid gap-6 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <Shield className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <Shield className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">Verified Backups</CardTitle>
               </CardHeader>
@@ -138,8 +135,8 @@ export default function AboutPage() {
 
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <Server className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <Server className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">Infrastructure Resilience</CardTitle>
               </CardHeader>
@@ -163,8 +160,8 @@ export default function AboutPage() {
 
             <Card>
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900 mb-3">
-                  <FileCheck className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+                <div className="bg-brand-100 dark:bg-brand-900 mb-3 flex h-12 w-12 items-center justify-center rounded-full">
+                  <FileCheck className="text-brand-600 dark:text-brand-400 h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg">Documentation & Runbooks</CardTitle>
               </CardHeader>
@@ -190,12 +187,12 @@ export default function AboutPage() {
 
         {/* Skills & Expertise */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Skills & Expertise</h2>
+          <h2 className="mb-6 text-2xl font-bold">Skills & Expertise</h2>
           <Card>
             <CardContent className="p-6">
               <div className="grid gap-6 md:grid-cols-3">
                 <div>
-                  <h4 className="font-semibold mb-3">AI Engineering</h4>
+                  <h4 className="mb-3 font-semibold">AI Engineering</h4>
                   <div className="flex flex-wrap gap-2">
                     <Badge>LLM Fine-tuning</Badge>
                     <Badge>RAG Systems</Badge>
@@ -205,7 +202,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-3">Infrastructure</h4>
+                  <h4 className="mb-3 font-semibold">Infrastructure</h4>
                   <div className="flex flex-wrap gap-2">
                     <Badge>Kubernetes</Badge>
                     <Badge>Docker</Badge>
@@ -215,7 +212,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-3">Web3 & Security</h4>
+                  <h4 className="mb-3 font-semibold">Web3 & Security</h4>
                   <div className="flex flex-wrap gap-2">
                     <Badge>Solidity</Badge>
                     <Badge>Smart Contracts</Badge>
@@ -231,19 +228,21 @@ export default function AboutPage() {
 
         {/* Certifications & Credentials */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Certifications</h2>
+          <h2 className="mb-6 text-2xl font-bold">Certifications</h2>
           <Card>
             <CardContent className="p-6">
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-900 rounded-lg">
-                  <Shield className="h-8 w-8 text-brand-600 dark:text-brand-400" />
+                <div className="flex items-center gap-3 rounded-lg bg-zinc-50 p-3 dark:bg-zinc-900">
+                  <Shield className="text-brand-600 dark:text-brand-400 h-8 w-8" />
                   <div>
                     <div className="font-semibold">AWS Solutions Architect</div>
-                    <div className="text-sm text-zinc-600 dark:text-zinc-400">Professional Level</div>
+                    <div className="text-sm text-zinc-600 dark:text-zinc-400">
+                      Professional Level
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-900 rounded-lg">
-                  <Shield className="h-8 w-8 text-brand-600 dark:text-brand-400" />
+                <div className="flex items-center gap-3 rounded-lg bg-zinc-50 p-3 dark:bg-zinc-900">
+                  <Shield className="text-brand-600 dark:text-brand-400 h-8 w-8" />
                   <div>
                     <div className="font-semibold">Certified Kubernetes Administrator</div>
                     <div className="text-sm text-zinc-600 dark:text-zinc-400">CNCF CKA</div>
@@ -255,10 +254,10 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <Card className="border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
-          <CardContent className="p-8 text-center space-y-4">
-            <h3 className="text-2xl font-bold">Let's Work Together</h3>
-            <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
+        <Card className="border-brand-200 dark:border-brand-800 from-brand-50 dark:from-brand-950 border-2 bg-linear-to-br to-white dark:to-zinc-900">
+          <CardContent className="space-y-4 p-8 text-center">
+            <h3 className="text-2xl font-bold">Let&apos;s Work Together</h3>
+            <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-300">
               Interested in verification-first development? Check out my work trials or get in touch
               to discuss custom projects.
             </p>

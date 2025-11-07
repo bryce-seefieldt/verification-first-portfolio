@@ -24,7 +24,7 @@ export class EvaluationHarness {
   }
 
   async runSuite(suiteName: string): Promise<EvaluationResult[]> {
-    const suite = this.suites.find(s => s.name === suiteName)
+    const suite = this.suites.find((s) => s.name === suiteName)
     if (!suite) {
       throw new Error(`Suite "${suiteName}" not found`)
     }
@@ -49,7 +49,7 @@ export class EvaluationHarness {
             passed,
             notes: passed ? 'Test passed' : 'Test failed',
             timestamp: new Date(),
-            score: passed ? 1 : 0
+            score: passed ? 1 : 0,
           })
 
           console.log(`✓ ${testCase.name}: ${passed ? 'PASS' : 'FAIL'} (${duration}ms)`)
@@ -59,7 +59,7 @@ export class EvaluationHarness {
             passed: false,
             notes: `Test error: ${error instanceof Error ? error.message : 'Unknown error'}`,
             timestamp: new Date(),
-            score: 0
+            score: 0,
           })
 
           console.log(`✗ ${testCase.name}: ERROR - ${error}`)
@@ -93,7 +93,7 @@ export class EvaluationHarness {
     report += `Generated at: ${new Date().toISOString()}\n\n`
 
     for (const [suiteName, suiteResults] of Object.entries(results)) {
-      const passed = suiteResults.filter(r => r.passed).length
+      const passed = suiteResults.filter((r) => r.passed).length
       const total = suiteResults.length
       const successRate = total > 0 ? (passed / total) * 100 : 0
 

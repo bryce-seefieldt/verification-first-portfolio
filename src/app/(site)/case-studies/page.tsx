@@ -1,4 +1,3 @@
-import { getCaseStudySlugs } from '@/lib/mdx'
 import { PageHeader } from '@/components/PageHeader'
 import { Section } from '@/components/Section'
 import { FeaturedCaseStudyCard } from '@/app/components/features/FeaturedCaseStudyCard'
@@ -8,7 +7,8 @@ import { BarChart3, CheckCircle2, Clock } from 'lucide-react'
 
 export const metadata = {
   title: 'Case Studies',
-  description: 'Verified AI engineering projects with measurable outcomes and cryptographic provenance',
+  description:
+    'Verified AI engineering projects with measurable outcomes and cryptographic provenance',
 }
 
 // Mock data - in production, this would come from MDX frontmatter
@@ -85,11 +85,11 @@ export default async function CaseStudiesPage() {
 
       {/* Stats Overview */}
       <Section>
-        <div className="grid gap-4 md:grid-cols-3 mb-12">
+        <div className="mb-12 grid gap-4 md:grid-cols-3">
           <Card>
             <CardContent className="flex items-center gap-4 p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-900">
-                <BarChart3 className="h-6 w-6 text-brand-600 dark:text-brand-400" />
+              <div className="bg-brand-100 dark:bg-brand-900 flex h-12 w-12 items-center justify-center rounded-full">
+                <BarChart3 className="text-brand-600 dark:text-brand-400 h-6 w-6" />
               </div>
               <div>
                 <p className="text-2xl font-bold">{totalProjects}</p>
@@ -122,7 +122,7 @@ export default async function CaseStudiesPage() {
         </div>
 
         {/* Filter Tags */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="mb-8 flex flex-wrap gap-2">
           <Badge variant="default">All</Badge>
           <Badge variant="outline">AI</Badge>
           <Badge variant="outline">RAG</Badge>

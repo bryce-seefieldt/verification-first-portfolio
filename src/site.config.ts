@@ -50,7 +50,7 @@ export const siteConfig = {
     {
       title: 'Live Evaluations',
       description:
-        'Real-time test results published as JSON. See exactly what works, what doesn\'t, and why.',
+        "Real-time test results published as JSON. See exactly what works, what doesn't, and why.",
       icon: '📊',
     },
     {

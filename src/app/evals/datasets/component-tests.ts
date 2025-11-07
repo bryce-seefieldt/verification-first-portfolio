@@ -1,5 +1,10 @@
 // Example evaluation suite for component testing
-import { EvaluationSuite, TestCase } from '../harness/EvaluationHarness'
+import type { EvaluationSuite, TestCase } from '../harness/EvaluationHarness'
+
+export interface ComponentTestCase extends TestCase {
+  componentName: string
+  props?: Record<string, unknown>
+}
 
 export const componentTestSuite: EvaluationSuite = {
   name: 'Component Evaluation',
@@ -14,13 +19,13 @@ export const componentTestSuite: EvaluationSuite = {
         // For now, we'll simulate the test
         const variants = ['primary', 'secondary', 'outline']
         const sizes = ['sm', 'md', 'lg']
-        
+
         // Simulate component testing logic
         const hasAllVariants = variants.length === 3
         const hasAllSizes = sizes.length === 3
-        
+
         return hasAllVariants && hasAllSizes
-      }
+      },
     },
     {
       id: 'card-composition',
@@ -33,11 +38,11 @@ export const componentTestSuite: EvaluationSuite = {
           supportsTitle: true,
           supportsDescription: true,
           supportsChildren: true,
-          supportsTailwindClasses: true
+          supportsTailwindClasses: true,
         }
-        
-        return Object.values(cardFeatures).every(feature => feature)
-      }
+
+        return Object.values(cardFeatures).every((feature) => feature)
+      },
     },
     {
       id: 'casestudy-card-data',
@@ -50,18 +55,19 @@ export const componentTestSuite: EvaluationSuite = {
           results: [
             { passed: true, criterion: 'test1' },
             { passed: true, criterion: 'test2' },
-            { passed: false, criterion: 'test3' }
-          ]
+            { passed: false, criterion: 'test3' },
+          ],
         }
-        
-        const passedCount = mockCaseStudy.results.filter(r => r.passed).length
+
+        const passedCount = mockCaseStudy.results.filter((r) => r.passed).length
         const expectedPassedCount = 2
         const successRate = (passedCount / mockCaseStudy.results.length) * 100
         const expectedSuccessRate = 66.67
-        
-        return passedCount === expectedPassedCount && 
-               Math.abs(successRate - expectedSuccessRate) < 0.1
-      }
-    }
-  ]
+
+        return (
+          passedCount === expectedPassedCount && Math.abs(successRate - expectedSuccessRate) < 0.1
+        )
+      },
+    },
+  ],
 }

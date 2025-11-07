@@ -44,12 +44,12 @@ export function FeaturedCaseStudyCard({
   const StatusIcon = statusInfo.icon
 
   return (
-    <Link href={href} className="block group">
-      <Card className="h-full transition-all hover:shadow-lg hover:border-brand-300 dark:hover:border-brand-700">
+    <Link href={href} className="group block">
+      <Card className="hover:border-brand-300 dark:hover:border-brand-700 h-full transition-all hover:shadow-lg">
         <CardHeader>
-          <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="mb-2 flex items-start justify-between gap-2">
             <Badge className={statusInfo.className}>
-              <StatusIcon className="h-3 w-3 mr-1" />
+              <StatusIcon className="mr-1 h-3 w-3" />
               {statusInfo.label}
             </Badge>
             <span className="text-sm text-zinc-500 dark:text-zinc-400">{date}</span>
@@ -67,10 +67,10 @@ export function FeaturedCaseStudyCard({
                 .filter(([_, value]) => value !== undefined)
                 .map(([key, value]) => (
                   <div key={key}>
-                    <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">
+                    <div className="text-brand-600 dark:text-brand-400 text-2xl font-bold">
                       {value}
                     </div>
-                    <div className="text-xs text-zinc-600 dark:text-zinc-400 capitalize">
+                    <div className="text-xs text-zinc-600 capitalize dark:text-zinc-400">
                       {key.replace(/([A-Z])/g, ' $1').trim()}
                     </div>
                   </div>
@@ -90,7 +90,7 @@ export function FeaturedCaseStudyCard({
           )}
 
           {/* View Link */}
-          <div className="flex items-center text-sm text-brand-600 dark:text-brand-400 font-medium pt-2">
+          <div className="text-brand-600 dark:text-brand-400 flex items-center pt-2 text-sm font-medium">
             View Case Study
             <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </div>

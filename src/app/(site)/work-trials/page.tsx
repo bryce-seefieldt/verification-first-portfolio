@@ -115,7 +115,7 @@ export default function WorkTrialsPage() {
 
       <Section>
         {/* Introduction */}
-        <Card className="mb-12 border-2 border-brand-200 dark:border-brand-800">
+        <Card className="border-brand-200 dark:border-brand-800 mb-12 border-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <GitFork className="h-5 w-5" />
@@ -128,8 +128,8 @@ export default function WorkTrialsPage() {
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3">
               <div>
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-bold">
+                <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                  <span className="bg-brand-600 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white">
                     1
                   </span>
                   Fork Template
@@ -139,8 +139,8 @@ export default function WorkTrialsPage() {
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-bold">
+                <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                  <span className="bg-brand-600 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white">
                     2
                   </span>
                   Build & Verify
@@ -150,8 +150,8 @@ export default function WorkTrialsPage() {
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-white text-sm font-bold">
+                <h4 className="mb-2 flex items-center gap-2 font-semibold">
+                  <span className="bg-brand-600 flex h-6 w-6 items-center justify-center rounded-full text-sm font-bold text-white">
                     3
                   </span>
                   Submit Results
@@ -174,9 +174,7 @@ export default function WorkTrialsPage() {
                     <CardTitle className="text-xl">{trial.title}</CardTitle>
                     <CardDescription>{trial.description}</CardDescription>
                   </div>
-                  <Badge className={difficultyColors[trial.difficulty]}>
-                    {trial.difficulty}
-                  </Badge>
+                  <Badge className={difficultyColors[trial.difficulty]}>{trial.difficulty}</Badge>
                 </div>
                 <div className="flex items-center gap-4 pt-2 text-sm text-zinc-600 dark:text-zinc-400">
                   <div className="flex items-center gap-1">
@@ -196,13 +194,16 @@ export default function WorkTrialsPage() {
                 <div className="grid gap-6 md:grid-cols-2">
                   {/* Deliverables */}
                   <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h4 className="mb-3 flex items-center gap-2 font-semibold">
                       <FileText className="h-4 w-4" />
                       Deliverables
                     </h4>
                     <ul className="space-y-2">
                       {trial.deliverables.map((item) => (
-                        <li key={item} className="text-sm text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+                        >
                           <span className="text-brand-600 dark:text-brand-400 mt-0.5">•</span>
                           {item}
                         </li>
@@ -212,14 +213,17 @@ export default function WorkTrialsPage() {
 
                   {/* Success Criteria */}
                   <div>
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h4 className="mb-3 flex items-center gap-2 font-semibold">
                       <CheckCircle2 className="h-4 w-4" />
                       Success Criteria
                     </h4>
                     <ul className="space-y-2">
                       {trial.criteria.map((item) => (
-                        <li key={item} className="text-sm text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400"
+                        >
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
                           {item}
                         </li>
                       ))}
@@ -227,7 +231,7 @@ export default function WorkTrialsPage() {
                   </div>
                 </div>
 
-                <div className="flex gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+                <div className="flex gap-3 border-t border-zinc-200 pt-4 dark:border-zinc-800">
                   <Button asChild>
                     <Link href={trial.githubTemplate} target="_blank" rel="noopener noreferrer">
                       <GitFork className="mr-2 h-4 w-4" />
@@ -236,7 +240,9 @@ export default function WorkTrialsPage() {
                     </Link>
                   </Button>
                   <Button asChild variant="outline">
-                    <Link href={`mailto:${siteConfig.social.email}?subject=Work Trial: ${trial.title}`}>
+                    <Link
+                      href={`mailto:${siteConfig.social.email}?subject=Work Trial: ${trial.title}`}
+                    >
                       Discuss Project
                     </Link>
                   </Button>
@@ -247,11 +253,12 @@ export default function WorkTrialsPage() {
         </div>
 
         {/* CTA */}
-        <Card className="mt-12 border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
-          <CardContent className="p-8 text-center space-y-4">
+        <Card className="border-brand-200 dark:border-brand-800 from-brand-50 dark:from-brand-950 mt-12 border-2 bg-linear-to-br to-white dark:to-zinc-900">
+          <CardContent className="space-y-4 p-8 text-center">
             <h3 className="text-2xl font-bold">Custom Work Trial</h3>
-            <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-              Have a specific project in mind? Let's design a custom work trial with evaluation criteria tailored to your needs.
+            <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-300">
+              Have a specific project in mind? Let&apos;s design a custom work trial with evaluation
+              criteria tailored to your needs.
             </p>
             <Button asChild size="lg">
               <Link href={`mailto:${siteConfig.social.email}?subject=Custom Work Trial`}>
