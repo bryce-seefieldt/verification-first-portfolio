@@ -4,15 +4,7 @@ import { getCaseStudyBySlug, getCaseStudySlugs, mdxComponents } from '@/lib/mdx'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-
-// Placeholder Verify Badge
-function VerifyBadge() {
-  return (
-    <span className="inline-flex items-center gap-1 rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-900 dark:text-green-200">
-      ✅ Verified (stub)
-    </span>
-  )
-}
+import { VerifyBadge } from '@/app/components/VerifyBadge'
 
 export async function generateStaticParams() {
   return getCaseStudySlugs().map((slug) => ({ slug }))
@@ -55,7 +47,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </div>
           )}
         </header>
-        <MDXRemote source={content} components={mdxComponents as any} />
+        <MDXRemote source={content} components={mdxComponents} />
       </article>
 
       <aside className="space-y-6">
@@ -86,7 +78,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   Object.entries(frontmatter.metrics).map(([k, v]) => (
                     <div key={k} className="flex items-center justify-between gap-4">
                       <span className="text-zinc-500">{k}</span>
-                      <span className="text-foreground font-medium">{v as any}</span>
+                      <span className="text-foreground font-medium">{String(v)}</span>
                     </div>
                   ))
                 ) : (

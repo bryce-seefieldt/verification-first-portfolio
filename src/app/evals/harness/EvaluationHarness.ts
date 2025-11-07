@@ -52,7 +52,7 @@ export class EvaluationHarness {
             score: passed ? 1 : 0,
           })
 
-          console.log(`✓ ${testCase.name}: ${passed ? 'PASS' : 'FAIL'} (${duration}ms)`)
+          console.warn(`✓ ${testCase.name}: ${passed ? 'PASS' : 'FAIL'} (${duration}ms)`)
         } catch (error) {
           results.push({
             criterion: testCase.name,
@@ -62,7 +62,7 @@ export class EvaluationHarness {
             score: 0,
           })
 
-          console.log(`✗ ${testCase.name}: ERROR - ${error}`)
+          console.warn(`✗ ${testCase.name}: ERROR - ${error}`)
         }
       }
 
@@ -81,7 +81,7 @@ export class EvaluationHarness {
     const results: Record<string, EvaluationResult[]> = {}
 
     for (const suite of this.suites) {
-      console.log(`\nRunning suite: ${suite.name}`)
+      console.warn(`\nRunning suite: ${suite.name}`)
       results[suite.name] = await this.runSuite(suite.name)
     }
 

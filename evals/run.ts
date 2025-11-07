@@ -58,8 +58,8 @@ async function runEvalSuite(
   const lines = fs.readFileSync(file, 'utf8').trim().split('\n')
   const results: EvalResult[] = []
 
-  console.log(`\n📊 Running evaluation suite: ${datasetName}`)
-  console.log(`📝 Total test cases: ${lines.length}\n`)
+  console.warn(`\n📊 Running evaluation suite: ${datasetName}`)
+  console.warn(`📝 Total test cases: ${lines.length}\n`)
 
   for (const line of lines) {
     const test = EvalCase.parse(JSON.parse(line))
@@ -78,10 +78,10 @@ async function runEvalSuite(
     })
 
     if (options.verbose) {
-      console.log(`${pass ? '✅' : '❌'} ${test.id}: ${pass ? 'PASS' : 'FAIL'}`)
+      console.warn(`${pass ? '✅' : '❌'} ${test.id}: ${pass ? 'PASS' : 'FAIL'}`)
       if (!pass) {
-        console.log(`   Expected: "${test.expected}"`)
-        console.log(`   Got: "${output}"`)
+        console.warn(`   Expected: "${test.expected}"`)
+        console.warn(`   Got: "${output}"`)
       }
     }
   }
@@ -102,10 +102,10 @@ async function runEvalSuite(
     },
   }
 
-  console.log(`\n📈 Results:`)
-  console.log(`   Passed: ${passed}/${results.length}`)
-  console.log(`   Failed: ${failed}/${results.length}`)
-  console.log(`   Pass Rate: ${passRate.toFixed(1)}%\n`)
+  console.warn(`\n📈 Results:`)
+  console.warn(`   Passed: ${passed}/${results.length}`)
+  console.warn(`   Failed: ${failed}/${results.length}`)
+  console.warn(`   Pass Rate: ${passRate.toFixed(1)}%\n`)
 
   return suiteResults
 }
@@ -135,7 +135,7 @@ async function main() {
   const outputPath = path.join(publicDir, 'evals-results.json')
   fs.writeFileSync(outputPath, JSON.stringify(allResults, null, 2))
 
-  console.log(`✨ Wrote results to ${outputPath}`)
+  console.warn(`✨ Wrote results to ${outputPath}`)
 
   // Exit with error code if any suite failed
   const anyFailed = allResults.some((suite) => suite.summary && suite.summary.failed > 0)

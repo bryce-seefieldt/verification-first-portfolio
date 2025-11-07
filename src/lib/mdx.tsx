@@ -85,24 +85,31 @@ export function listCaseStudies(): MdxFile[] {
     .sort((a, b) => (a.frontmatter.date < b.frontmatter.date ? 1 : -1))
 }
 
-export const mdxComponents: Record<string, React.ComponentType<any>> = {
-  h1: (props) => <h1 className="mt-8 mb-4 text-3xl font-bold tracking-tight" {...props} />,
-  h2: (props) => <h2 className="mt-8 mb-3 text-2xl font-semibold" {...props} />,
-  h3: (props) => <h3 className="mt-6 mb-2 text-xl font-semibold" {...props} />,
-  p: (props) => <p className="my-4 leading-7 text-zinc-700 dark:text-zinc-300" {...props} />,
-  a: (props) => <a className="text-brand-600 underline" {...props} />,
-  ul: (props) => <ul className="my-4 list-disc pl-6" {...props} />,
-  ol: (props) => <ol className="my-4 list-decimal pl-6" {...props} />,
-  blockquote: (props) => (
+type MdxComponentProps = React.HTMLAttributes<HTMLElement>
+type MdxComponentMap = Record<string, React.ComponentType<MdxComponentProps>>
+
+export const mdxComponents: MdxComponentMap = {
+  h1: (props: MdxComponentProps) => (
+    <h1 className="mt-8 mb-4 text-3xl font-bold tracking-tight" {...props} />
+  ),
+  h2: (props: MdxComponentProps) => <h2 className="mt-8 mb-3 text-2xl font-semibold" {...props} />,
+  h3: (props: MdxComponentProps) => <h3 className="mt-6 mb-2 text-xl font-semibold" {...props} />,
+  p: (props: MdxComponentProps) => (
+    <p className="my-4 leading-7 text-zinc-700 dark:text-zinc-300" {...props} />
+  ),
+  a: (props: MdxComponentProps) => <a className="text-brand-600 underline" {...props} />,
+  ul: (props: MdxComponentProps) => <ul className="my-4 list-disc pl-6" {...props} />,
+  ol: (props: MdxComponentProps) => <ol className="my-4 list-decimal pl-6" {...props} />,
+  blockquote: (props: MdxComponentProps) => (
     <blockquote
       className="my-4 border-l-4 pl-4 text-zinc-600 italic dark:text-zinc-400"
       {...props}
     />
   ),
-  code: (props) => (
+  code: (props: MdxComponentProps) => (
     <code className="rounded bg-zinc-100 px-1.5 py-0.5 dark:bg-zinc-800" {...props} />
   ),
-  pre: (props) => (
+  pre: (props: MdxComponentProps) => (
     <pre className="overflow-x-auto rounded-md bg-zinc-100 p-4 dark:bg-zinc-900" {...props} />
   ),
 }

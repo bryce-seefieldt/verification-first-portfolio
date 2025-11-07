@@ -81,7 +81,7 @@ export default function LiveEvalsPage() {
 
   const totalTests = suites.reduce((sum, suite) => sum + (suite.summary?.total || 0), 0)
   const totalPassed = suites.reduce((sum, suite) => sum + (suite.summary?.passed || 0), 0)
-  const totalFailed = suites.reduce((sum, suite) => sum + (suite.summary?.failed || 0), 0)
+  const _totalFailed = suites.reduce((sum, suite) => sum + (suite.summary?.failed || 0), 0)
   const overallPassRate = totalTests > 0 ? ((totalPassed / totalTests) * 100).toFixed(1) : '0.0'
 
   return (

@@ -31,6 +31,9 @@ jobs:
       - name: Run Evaluations
         run: pnpm evals
 
+      - name: Generate Provenance Index
+        run: pnpm tsx scripts/hash-content.ts
+
       - name: Build
         run: pnpm build
 

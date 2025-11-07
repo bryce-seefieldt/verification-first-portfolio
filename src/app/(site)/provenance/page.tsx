@@ -4,8 +4,42 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/site.config'
-import { Shield, Hash, Lock, CheckCircle2, ExternalLink, FileCheck, GitBranch } from 'lucide-react'
+import {
+  Shield,
+  Hash,
+  Lock,
+  CheckCircle2,
+  ExternalLink,
+  FileCheck,
+  GitBranch,
+  Clipboard,
+} from 'lucide-react'
 import Link from 'next/link'
+import fs from 'node:fs'
+import path from 'node:path'
+import { CopyButton } from '@/app/components/CopyButton'
+
+interface ProvenanceEntry {
+  path: string
+  sha256: string
+}
+
+interface ProvenanceIndex {
+  generatedAt: string
+  entries: ProvenanceEntry[]
+}
+
+function getProvenanceIndex(): ProvenanceIndex | null {
+  try {
+    const p = path.join(process.cwd(), 'public', 'provenance', 'index.json')
+    if (!fs.existsSync(p)) return null
+    const raw = fs.readFileSync(p, 'utf-8')
+    return JSON.parse(raw) as ProvenanceIndex
+  } catch (e) {
+    console.error('Failed reading provenance index', e)
+    return null
+  }
+}
 
 export const metadata = {
   title: 'Provenance',
@@ -14,12 +48,71 @@ export const metadata = {
 }
 
 export default function ProvenancePage() {
+  const provenance = getProvenanceIndex()
   return (
     <>
       <PageHeader
         title="Cryptographic Provenance"
         description="Every artifact in this portfolio is cryptographically signed and anchored on-chain for immutable verification"
       />
+
+      <Section>
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clipboard className="h-5 w-5" />
+              Hashed Artifacts
+            </CardTitle>
+            <CardDescription>
+              Build-time content hashed with SHA-256. Regenerated on each CI run.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {provenance && provenance.entries.length > 0 ? (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+                  <div>Generated: {new Date(provenance.generatedAt).toLocaleString()}</div>
+                  <div className="font-mono">
+                    {provenance.entries.length} file{provenance.entries.length === 1 ? '' : 's'}
+                  </div>
+                </div>
+                <div className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-700">
+                  <table className="w-full text-sm">
+                    <thead className="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+                      <tr>
+                        <th className="p-2 text-left font-medium">Path</th>
+                        <th className="p-2 text-left font-medium">SHA-256</th>
+                        <th className="p-2 text-left font-medium" />
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
+                      {provenance.entries.map((e) => (
+                        <tr key={e.path} className="align-top">
+                          <td className="max-w-[220px] truncate p-2 font-mono text-[11px] whitespace-nowrap">
+                            {e.path}
+                          </td>
+                          <td className="p-2 font-mono text-[11px] break-all">{e.sha256}</td>
+                          <td className="p-2">
+                            <CopyButton value={e.sha256} label="Copy" />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                No provenance index found. Generate locally with{' '}
+                <code className="rounded bg-zinc-100 px-1 py-0.5 text-[11px] dark:bg-zinc-900">
+                  pnpm tsx scripts/hash-content.ts
+                </code>
+                .
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      </Section>
 
       <Section>
         {/* Network Info */}
