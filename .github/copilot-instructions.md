@@ -443,6 +443,142 @@ SITE_URL=https://your-site.vercel.app pnpm tsx scripts/check-uptime.ts
 }
 ```
 
+## Branching & Pull Request Policy
+
+To maintain auditability and consistent provenance, ALL non-trivial changes must be implemented on a feature branch and merged via Pull Request.
+
+### Branch Naming Convention
+
+Use kebab-case prefixes describing scope:
+
+- `feat/<short-description>` – New user-facing feature (e.g. `feat/on-chain-anchoring`)
+- `docs/<short-description>` – Documentation only (e.g. `docs/add-adrs`)
+- `fix/<short-description>` – Bug fix (e.g. `fix/edge-runtime-uptime`)
+- `chore/<short-description>` – Maintenance/config (e.g. `chore/update-eslint`)
+- `refactor/<short-description>` – Structural changes without new features
+- `test/<short-description>` – Evaluation or test harness additions
+
+Include ticket or date suffix if relevant: `feat/on-chain-anchoring-2025-11`.
+
+### Required PR Sections
+
+Pull Request descriptions must contain:
+
+1. Summary – 2–3 sentences of intent
+2. Verification Plan – How reviewers can validate (commands, artifacts, eval suite names)
+3. Risk Assessment – Potential impacts (performance, security, DR/BCP)
+4. Related Artifacts – Evals results diff, provenance index changes, screenshots if UI
+5. .gitignore Review – Explicit statement: "gitignore reviewed: yes/no changes" and list any additions
+6. Secrets Impact – List new env vars and confirm they are added to GitHub Secrets (never committed)
+7. Follow-ups – Small next steps or deferred items
+
+### Automatic Chat Prompts (Agent Behavior)
+
+When starting a multi-file change, the assistant MUST:
+
+- Propose a branch name following the convention
+- Create the branch before edits
+- After implementation & passing lint/build/evals, prompt user with a structured PR body draft
+- Trigger a .gitignore review if:
+  - Adding dependencies
+  - Introducing build output directories
+  - Adding scripts that generate artifacts
+  - Adding environment variable usage
+
+### Merge Criteria
+
+- All eval suites pass (no regression in passRate)
+- Provenance index regenerated if content changed
+- No new lint errors or TypeScript errors
+- .gitignore updated if required
+- Secrets are referenced via process.env and stored in GitHub Secrets (never raw)
+
+## Secrets & Sensitive Configuration Guidance
+
+Never commit live API keys, private keys, or credentials. Use GitHub Actions Secrets or Repository/Environment secrets.
+
+### Recommended Secrets
+
+- `SEPOLIA_RPC_URL` – RPC endpoint for on-chain anchoring
+- `PROVENANCE_CONTRACT_ADDRESS` – Deployed smart contract address
+- `API_RATE_LIMIT_KEY` – Any external service rate limit tokens
+- `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` – When moving from mock to real evaluation models
+- `UPTIME_WEBHOOK_URL` – Optional alerting integration
+
+### Patterns to Avoid
+
+- Hardcoding secrets in `site.config.ts` or scripts
+- Committing `.env.*` (all env files are ignored; create `.env.example` for contributors)
+- Embedding private repo URLs with tokens in fetch calls
+
+### Safe Usage Example
+
+```ts
+const rpcUrl = process.env.SEPOLIA_RPC_URL
+if (!rpcUrl) throw new Error('Missing SEPOLIA_RPC_URL secret')
+```
+
+### Secrets Rotation Policy (Recommended)
+
+- Rotate API keys every 90 days
+- Invalidate old contract deployment keys immediately after use
+- Document rotation in `content/logs/` and anchor provenance after rotation events
+
+## .gitignore Review Trigger
+
+The assistant must re-evaluate `.gitignore` whenever:
+
+- Adding new tooling (e.g., coverage, bundlers, test runners)
+- Generating new artifact directories (e.g., `public/reports`, `dist/`, `coverage/`)
+- Introducing local databases or caches (e.g., `*.sqlite`, `.turbo/`)
+- Adding environment variable usage or secrets
+
+If additions are needed, update `.gitignore` in the same branch and list the changes under the PR "Related Artifacts" section.
+
+## Assistant Operational Protocol (Enforced)
+
+1. Gather context (file_search / read_file) BEFORE editing.
+2. Propose branch name → create branch.
+3. Implement minimal verified change set (small patches, preserve style).
+4. Run lint → build → evals (fast feedback loop).
+5. Regenerate provenance if content changed (`pnpm tsx scripts/hash-content.ts`).
+6. Draft PR body including required sections.
+7. Re-review `.gitignore` and secrets usage; update/diff if needed.
+8. Await user confirmation before merging.
+
+## PR Body Template (Reusable)
+
+```
+### Summary
+<high-level intent>
+
+### Verification Plan
+- Lint: pnpm lint (PASS)
+- Build: pnpm build (PASS)
+- Evals: pnpm tsx evals/run.ts <dataset> (PASS %)
+- Provenance: diff public/provenance/index.json (if changed)
+
+### Risk Assessment
+- Performance: <impact>
+- Security: <impact>
+- DR/BCP: <impact>
+
+### Related Artifacts
+- evals-results.json diff
+- provenance/index.json diff
+- screenshots / logs
+
+### .gitignore Review
+<list changes or "no changes needed">
+
+### Secrets Impact
+- Added: SEPOLIA_RPC_URL (GitHub Secret)
+- Removed: None
+
+### Follow-ups
+- <next items>
+```
+
 ## Key Commands
 
 - `pnpm dev` - Start development server
