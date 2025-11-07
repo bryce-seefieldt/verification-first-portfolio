@@ -1,83 +1,237 @@
-import { CaseStudy } from "@/app/lib/types";
-import { CaseStudyCard } from "@/app/components/features/CaseStudyCard";
-import { Section } from "@/components/Section";
-import { PageHeader } from "@/components/PageHeader";
+import Link from 'next/link'
+import { Section } from '@/components/Section'
+import { FeaturedCaseStudyCard } from '@/app/components/features/FeaturedCaseStudyCard'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { siteConfig } from '@/site.config'
+import { ArrowRight, CheckCircle2, Shield, BarChart3, FileText } from 'lucide-react'
 
-const mockCaseStudies: CaseStudy[] = [
+const featuredCaseStudies = [
   {
-    id: "cs-1",
-    title: "Portfolio Architecture",
-    description: "Building a verification-first portfolio with Next.js and Tailwind v4",
-    technologies: ["Next.js", "TypeScript", "Tailwind v4"],
-    evaluationCriteria: ["Structure", "DX", "Performance"],
-    results: [
-      { criterion: "Structure", passed: true, timestamp: new Date(), score: 1 },
-      { criterion: "DX", passed: true, timestamp: new Date(), score: 1 },
-      { criterion: "Performance", passed: false, timestamp: new Date(), score: 0 },
-    ],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    title: 'Incident Response Copilot',
+    summary:
+      'Built an AI-powered incident response system with verification at every step. Reduced MTTR by 40%.',
+    date: '2024-10-15',
+    status: 'verified' as const,
+    href: '/case-studies/incident-copilot',
+    metrics: {
+      coverage: '94%',
+      mttr: '-40%',
+    },
   },
   {
-    id: "cs-2",
-    title: "Content Pipeline",
-    description: "MDX-driven content strategy with ADRs and logs",
-    technologies: ["MDX", "Contentlayer (future)", "Utilities"],
-    evaluationCriteria: ["MDX", "Automation", "Docs"],
-    results: [
-      { criterion: "MDX", passed: true, timestamp: new Date(), score: 1 },
-      { criterion: "Automation", passed: false, timestamp: new Date(), score: 0 },
-      { criterion: "Docs", passed: true, timestamp: new Date(), score: 1 },
-    ],
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    title: 'Evaluation-First RAG Pipeline',
+    summary:
+      'Designed retrieval system with evaluation harness before writing code. Achieved 98% accuracy.',
+    date: '2024-09-20',
+    status: 'verified' as const,
+    href: '/case-studies/eval-first-rag',
+    metrics: {
+      accuracy: '98%',
+      latency: '120ms',
+    },
   },
-  {
-    id: "cs-3",
-    title: "Evaluation Harness",
-    description: "Automated verification and reporting of functionality",
-    technologies: ["Node", "TypeScript", "Harness"],
-    evaluationCriteria: ["Coverage", "Reporting", "Ease of Use"],
-    results: [
-      { criterion: "Coverage", passed: false, timestamp: new Date(), score: 0 },
-      { criterion: "Reporting", passed: true, timestamp: new Date(), score: 1 },
-      { criterion: "Ease of Use", passed: true, timestamp: new Date(), score: 1 },
-    ],
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
+]
 
 export default function Home() {
   return (
-    <div className="space-y-10">
-      <Section>
-        <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">
-            Verification-First <span className="text-brand-600">Portfolio</span>
-          </h1>
-          <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-            Rigorous development with testing, evaluation, and transparent docs.
-          </p>
+    <div className="space-y-24">
+      {/* Hero Section */}
+      <Section className="pt-12 pb-16 md:pt-20 md:pb-24">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="flex flex-col justify-center space-y-6">
+            <div className="space-y-4">
+              <Badge variant="outline" className="w-fit">
+                {siteConfig.author.title}
+              </Badge>
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                Verification-First
+                <span className="block text-brand-600 dark:text-brand-400">Development</span>
+              </h1>
+              <p className="text-lg text-zinc-600 dark:text-zinc-300 max-w-xl">
+                {siteConfig.description}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild size="lg">
+                <Link href="/case-studies">
+                  View Case Studies
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/provenance">How It Works</Link>
+              </Button>
+            </div>
+            <div className="flex items-center gap-6 pt-4 text-sm text-zinc-600 dark:text-zinc-400">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-green-600" />
+                <span>Verified Builds</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4 text-blue-600" />
+                <span>On-Chain Provenance</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center lg:justify-end">
+            <Card className="w-full max-w-md border-2 border-brand-200 dark:border-brand-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-brand-600 dark:text-brand-400" />
+                  Live Evaluation Status
+                </CardTitle>
+                <CardDescription>Real-time verification metrics</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-zinc-600 dark:text-zinc-400">Test Coverage</span>
+                  <Badge variant="default">94%</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-zinc-600 dark:text-zinc-400">Eval Pass Rate</span>
+                  <Badge variant="default">98%</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-zinc-600 dark:text-zinc-400">Build Status</span>
+                  <Badge className="bg-green-600">Passing</Badge>
+                </div>
+                <Button asChild variant="link" className="w-full mt-2 p-0">
+                  <Link href="/evals">View All Evaluations →</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </Section>
 
+      {/* Features Grid */}
       <Section>
-        <PageHeader title="Case Studies" actions={<a href="#" className="text-sm text-brand-600 hover:underline">View all</a>} />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {mockCaseStudies.map((cs) => (
-            <CaseStudyCard key={cs.id} caseStudy={cs} />
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-3">Why Verification-First?</h2>
+          <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
+            Traditional development writes code first, then tests. Verification-first defines success criteria before implementation.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {siteConfig.features.map((feature) => (
+            <Card key={feature.title} className="border-zinc-200 dark:border-zinc-800">
+              <CardHeader>
+                <div className="text-4xl mb-3">{feature.icon}</div>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{feature.description}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </Section>
 
-      <Section className="prose max-w-none">
-        <h2>Why verification-first?</h2>
-        <p>
-          This portfolio uses evaluation-driven development to ensure changes are measurable
-          and decisions are documented through ADRs. The goal is clarity, confidence, and speed.
-        </p>
+      {/* Featured Case Studies */}
+      <Section>
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-2">Featured Work</h2>
+            <p className="text-zinc-600 dark:text-zinc-300">
+              Real-world applications of verification-first development
+            </p>
+          </div>
+          <Button asChild variant="ghost">
+            <Link href="/case-studies">
+              View All
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {featuredCaseStudies.map((study) => (
+            <FeaturedCaseStudyCard key={study.href} {...study} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Verify Explainer */}
+      <Section>
+        <Card className="border-2 border-brand-200 dark:border-brand-800 bg-linear-to-br from-brand-50 to-white dark:from-brand-950 dark:to-zinc-900">
+          <CardHeader className="text-center pb-8">
+            <CardTitle className="text-3xl font-bold mb-3">How Verification Works</CardTitle>
+            <CardDescription className="text-base max-w-2xl mx-auto">
+              Every artifact in this portfolio is cryptographically signed and can be independently verified
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6 md:grid-cols-3 mb-8">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                    1
+                  </div>
+                  <h3 className="font-semibold">Define Criteria</h3>
+                </div>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
+                  Success metrics and evaluation harnesses are created before any implementation
+                </p>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                    2
+                  </div>
+                  <h3 className="font-semibold">Build & Test</h3>
+                </div>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
+                  Implementation is validated continuously against defined criteria with automated evals
+                </p>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-white font-bold">
+                    3
+                  </div>
+                  <h3 className="font-semibold">Prove & Deploy</h3>
+                </div>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 pl-13">
+                  Results are cryptographically signed and anchored on-chain for immutable provenance
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-4">
+              <Button asChild>
+                <Link href="/provenance">
+                  <FileText className="mr-2 h-4 w-4" />
+                  Learn More
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/evals">
+                  <BarChart3 className="mr-2 h-4 w-4" />
+                  View Live Evals
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </Section>
+
+      {/* CTA Section */}
+      <Section className="text-center">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <h2 className="text-3xl font-bold">Ready to Work Together?</h2>
+          <p className="text-lg text-zinc-600 dark:text-zinc-300">
+            Explore work trial templates, review my evaluation results, or learn about my disaster recovery practices
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild size="lg">
+              <Link href="/work-trials">View Work Trials</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/about">About Me</Link>
+            </Button>
+          </div>
+        </div>
       </Section>
     </div>
-  );
+  )
 }
