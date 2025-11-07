@@ -1,0 +1,74 @@
+[
+  {
+    "ts": 1762540854514,
+    "suite": "rag-basics",
+    "results": [
+      {
+        "id": "rag-001",
+        "pass": true,
+        "output": "Verification-first development is an approach where success criteria and evaluation harnesses are defined before implementation.",
+        "latency": 0
+      },
+      {
+        "id": "rag-002",
+        "pass": true,
+        "output": "Cryptographic provenance uses digital signatures and hash functions to create immutable audit trails for software artifacts.",
+        "latency": 0
+      },
+      {
+        "id": "rag-003",
+        "pass": true,
+        "output": "Evaluation harnesses provide automated testing frameworks that validate implementations against predefined success criteria continuously.",
+        "latency": 0
+      },
+      {
+        "id": "rag-004",
+        "pass": true,
+        "output": "Blockchain anchoring works by storing cryptographic hashes of build artifacts on-chain, creating tamper-proof timestamps.",
+        "latency": 0
+      },
+      {
+        "id": "rag-005",
+        "pass": true,
+        "output": "Evaluation harnesses provide automated testing frameworks that validate implementations against predefined success criteria continuously.",
+        "latency": 0
+      },
+      {
+        "id": "rag-006",
+        "pass": true,
+        "output": "Disaster recovery practices include automated backups, geo-redundant storage, infrastructure-as-code, and documented runbooks.",
+        "latency": 0
+      },
+      {
+        "id": "rag-007",
+        "pass": true,
+        "output": "RAG systems use retrieval algorithms, vector databases, embedding models, and relevance ranking to find and return context for language models.",
+        "latency": 0
+      },
+      {
+        "id": "rag-008",
+        "pass": true,
+        "output": "LLM accuracy is measured using evaluation datasets with ground truth labels, comparing outputs against expected results with metrics.",
+        "latency": 0
+      },
+      {
+        "id": "rag-009",
+        "pass": true,
+        "output": "On-chain verification provides immutable proof that artifacts existed at specific points in time, with cryptographic guarantees and tamper-evidence.",
+        "latency": 0
+      },
+      {
+        "id": "rag-010",
+        "pass": true,
+        "output": "Immutable audit trails are permanent records that cannot be altered after creation, providing accountability and provenance tracking.",
+        "latency": 0
+      }
+    ],
+    "summary": {
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "passRate": 100
+    }
+  }
+]

@@ -28,6 +28,9 @@ jobs:
       - name: Lint
         run: pnpm lint || true # optionally allow warnings to pass
 
+      - name: Run Evaluations
+        run: pnpm evals
+
       - name: Build
         run: pnpm build
 

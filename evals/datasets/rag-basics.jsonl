@@ -1,0 +1,10 @@
+{"id":"rag-001","input":"What is verification-first development?","expected":"verification"}
+{"id":"rag-002","input":"Explain cryptographic provenance in software","expected":"cryptographic"}
+{"id":"rag-003","input":"What are the benefits of evaluation harnesses?","expected":"evaluation"}
+{"id":"rag-004","input":"How does blockchain anchoring work for build artifacts?","expected":"blockchain"}
+{"id":"rag-005","input":"What is the difference between unit tests and evaluation suites?","expected":"test"}
+{"id":"rag-006","input":"Describe disaster recovery practices for software projects","expected":"disaster"}
+{"id":"rag-007","input":"What tools are used for RAG systems?","expected":"retrieval"}
+{"id":"rag-008","input":"How do you measure LLM accuracy?","expected":"accuracy"}
+{"id":"rag-009","input":"What is the purpose of on-chain verification?","expected":"chain"}
+{"id":"rag-010","input":"Explain the concept of immutable audit trails","expected":"immutable"}
