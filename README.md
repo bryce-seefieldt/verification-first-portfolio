@@ -2,6 +2,8 @@
 
 A Next.js 16 + TypeScript portfolio showcasing verification-first development practices with cryptographic provenance, real-time evaluations, and disaster recovery mindset. Every feature includes success criteria, evaluation harnesses, and immutable audit trails.
 
+[GitHub | Verification First Portfolio](https://github.com/bryce-seefieldt/verification-first-portfolio)
+
 ## 🎯 Core Philosophy
 
 **Verification-First Development**: Define success criteria and evaluation harnesses _before_ implementation. Measure everything. Document decisions. Prove outcomes.
@@ -192,6 +194,82 @@ pnpm start
 ```bash
 # Build + postexport + hashing
 pnpm run build:full
+```
+
+### Deploy to Vercel
+
+#### Prerequisites
+
+1. Install [Vercel CLI](https://vercel.com/docs/cli):
+
+   ```bash
+   pnpm add -g vercel
+   ```
+
+2. Set up GitHub Secrets (required for CI/CD):
+   - `VERCEL_TOKEN` - Personal Access Token from Vercel dashboard
+   - `VERCEL_ORG_ID` - Team/Organization ID from Vercel project settings
+   - `VERCEL_PROJECT_ID` - Project ID from Vercel project settings
+
+3. (Optional) Configure environment variables in Vercel dashboard:
+   - `NEXT_PUBLIC_SITE_URL` - Your production URL
+   - `SEPOLIA_RPC_URL` - For on-chain anchoring (when implemented)
+   - `PROVENANCE_CONTRACT_ADDRESS` - Smart contract address (when deployed)
+   - `UPTIME_WEBHOOK_URL` - For alerting integration (optional)
+
+#### Manual Deployment
+
+```bash
+# Login to Vercel
+vercel login
+
+# Deploy to preview
+vercel
+
+# Deploy to production
+vercel --prod
+```
+
+#### Automated Deployment (GitHub Actions)
+
+Pushes to `main` branch automatically trigger deployment via `.github/workflows/vercel-deploy.yml`:
+
+1. **Quality Gates**: Lint → Evals → Provenance → Build → Health Check
+2. **Vercel Build**: Pull environment → Build artifacts → Deploy
+3. **PR Comments**: Preview URLs posted automatically on pull requests
+
+**Deployment Flow:**
+
+- Push to `main` → Production deployment
+- Open PR → Preview deployment with comment containing URL
+- Merge PR → Production deployment updates
+
+#### Vercel Configuration
+
+The `vercel.json` includes:
+
+- **Security Headers**: `X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Referrer-Policy`
+- **Caching**: API routes with `max-age=0, must-revalidate`
+- **Rewrites**: `/health` → `/api/health` for convenience
+- **Auto-deployment**: Enabled for `main` and `feat/*` branches
+- **Region**: `iad1` (US East) - modify as needed
+
+#### Verifying Deployment
+
+After deployment:
+
+```bash
+# Check health endpoint
+curl https://your-site.vercel.app/api/ping
+
+# Verify uptime tracking (after hourly cron runs)
+curl https://your-site.vercel.app/uptime.json
+
+# Check provenance index
+curl https://your-site.vercel.app/provenance/index.json
+
+# View live evaluations
+open https://your-site.vercel.app/evals/live
 ```
 
 ### Health Check
