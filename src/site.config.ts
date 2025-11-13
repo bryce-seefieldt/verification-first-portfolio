@@ -1,19 +1,19 @@
 export const siteConfig = {
-  name: 'Verification-First Portfolio',
+  name: 'Bryce Seefieldt — Verification-First Engineering',
+  title: 'Verification-First Portfolio | Bryce Seefieldt',
   description:
     'A portfolio showcasing verification-first development practices with cryptographic provenance and live evaluation results.',
   url: 'https://verification-first-portfolio.vercel.app',
   author: {
     name: 'Bryce Seefieldt',
-    title: 'Verification-First Engineer',
+    title: 'Full-Stack Developer, DevOps Engineer & Project Manager',
     bio: 'Building systems with cryptographic provenance, real-time evaluation, and disaster recovery mindset.',
     location: 'Remote',
   },
   social: {
     github: 'https://github.com/bryce-seefieldt',
-    twitter: 'https://twitter.com/bryceseefieldt',
-    linkedin: 'https://linkedin.com/in/bryceseefieldt',
-    email: 'bryce@example.com',
+    linkedin: 'https://linkedin.com/in/beseefieldt',
+    email: 'bryce.seefieldt@gmail.com',
   },
   repo: {
     owner: 'bryce-seefieldt',

@@ -287,7 +287,7 @@ Centralized configuration for:
 
 - Site metadata (name, description, URL)
 - Author profile (name, title, bio, location)
-- Social links (GitHub, Twitter, LinkedIn, email)
+- Social links (GitHub, LinkedIn, email)
 - Repository details (owner, name, URL)
 - Blockchain network (Sepolia testnet for provenance anchoring)
 - Navigation menu items
