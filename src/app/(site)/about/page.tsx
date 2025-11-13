@@ -87,17 +87,19 @@ export default function AboutPage() {
                         <ExternalLink className="ml-auto h-3 w-3" />
                       </Link>
                     </Button>
-                    <Button asChild variant="outline" className="w-full justify-start">
-                      <Link
-                        href={siteConfig.social.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Twitter className="mr-2 h-4 w-4" />
-                        Twitter
-                        <ExternalLink className="ml-auto h-3 w-3" />
-                      </Link>
-                    </Button>
+                    {siteConfig.social?.twitter && (
+                      <Button asChild variant="outline" className="w-full justify-start">
+                        <Link
+                          href={siteConfig.social.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Twitter className="mr-2 h-4 w-4" />
+                          Twitter
+                          <ExternalLink className="ml-auto h-3 w-3" />
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
