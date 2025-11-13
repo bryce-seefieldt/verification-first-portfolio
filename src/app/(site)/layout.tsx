@@ -18,7 +18,7 @@ export default function SiteLayout({
         <div className="container-lg flex h-16 items-center justify-between">
           <Link href="/" className="inline-flex items-center gap-2 font-semibold">
             <span className="bg-brand-500 h-2 w-2 rounded-full" />
-            Verification-First
+            Bryce Seefieldt | Development Portfolio
           </Link>
           <nav className="flex items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400">
             <Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400">
