@@ -19,6 +19,15 @@
   },
   "headers": [
     {
+      "source": "/(evals-results\\.json|uptime\\.json|provenance/index\\.json)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
       "source": "/api/:path*",
       "headers": [
         {
