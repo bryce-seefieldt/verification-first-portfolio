@@ -1,3 +1,4 @@
+// app/(site)/page.tsx
 import Link from 'next/link'
 import { Section } from '@/components/Section'
 import { FeaturedCaseStudyCard } from '@/app/components/features/FeaturedCaseStudyCard'
@@ -43,11 +44,13 @@ export default function Home() {
           <div className="flex flex-col justify-center space-y-6">
             <div className="space-y-4">
               <Badge variant="outline" className="w-fit">
-                {siteConfig.author.title}
+                {siteConfig.author.name} | {siteConfig.author.title}
               </Badge>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 Verification-First
-                <span className="text-brand-600 dark:text-brand-400 block">Development</span>
+                <span className="text-brand-600 dark:text-brand-400 block">
+                  Development Portfolio
+                </span>
               </h1>
               <p className="max-w-xl text-lg text-zinc-600 dark:text-zinc-300">
                 {siteConfig.description}

@@ -100,3 +100,5 @@ dist/
 
 # Ignore generated type augmentations from tools (keep explicit ones in src/ if needed)
 types/*/*.generated.d.ts
+
+docs/
